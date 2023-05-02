@@ -1,0 +1,81 @@
+@mixin small-breakpoint {
+  @media (min-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin medium-breakpoint {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin large-breakpoint {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex: $values;
+  -webkit-flex: $values;
+  -ms-flex: $values;
+  flex: $values;
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+
+@mixin absolute-tl() {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@mixin transition-ease {
+  transition: all 0.2s ease-in-out;
+}
+
+@mixin shadow-box {
+  -webkit-box-shadow: 0px 0px 21px 8px rgba(0, 0, 0, 0.52);
+  box-shadow: 0px 0px 13px 8px rgba(0, 0, 0, 0.3);
+}
+
+// Pills in Skill-Section
+@mixin skill-pill($skill-value) {
+  // Here we create 1. the class name out of the value.
+  // To do this we 2. Remove whitespaces with a function and
+  // 3. set the value to lower case with an SASS given function.
+  .pill.pill__#{str-remove-whitespace(to-lower-case($skill-value))} {
+    &::after {
+      content: $skill-value;
+    }
+  }
+}
+
+//----------------------------------------------------
+// Functions
+//----------------------------------------------------
+
+// Remove spaces in value
+@function str-remove-whitespace($str) {
+  @while (str-index($str, " ") != null) {
+    $index: str-index($str, " ");
+    $str: "#{str-slice($str, 0, $index - 1)}#{str-slice($str, $index + 1)}";
+  }
+  @return $str;
+}

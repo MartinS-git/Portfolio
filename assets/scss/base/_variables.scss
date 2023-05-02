@@ -1,0 +1,45 @@
+/**
+ * Variables
+ */
+
+//----------------------------------------------------
+// Containers
+//----------------------------------------------------
+
+$x-small: 600px !default;
+$small: 800px !default;
+$medium: 1000px !default;
+$large: 1200px !default;
+
+//----------------------------------------------------
+// Break Points
+//----------------------------------------------------
+
+$mobile: $x-small !default;
+$tablet: $small !default;
+$desktop: $medium !default;
+$wide: $large !default;
+
+//----------------------------------------------------
+// Colo(u)rs
+//----------------------------------------------------
+
+:root {
+  --color-dark-primary: #23252b; // Background dark
+  --color-black-light: #2e3036; // Cards
+  --color-black-dark: #161519; // Cards
+  --color-light-primary: #efe8dc; // Background light
+
+  // Fonts + Components
+  --color-grey-light: #f2f2f2; // Headline
+  --color-grey-dark: #60606b; // Divider
+}
+
+//----------------------------------------------------
+// Typography
+//----------------------------------------------------
+
+:root {
+  --font-default: "Inter", sans-serif;
+  --font-headline: "DM Sans", sans-serif;
+}

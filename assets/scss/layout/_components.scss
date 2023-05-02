@@ -1,0 +1,346 @@
+/**
+ * Variables
+ */
+
+//----------------------------------------------------
+// Header
+//----------------------------------------------------
+
+header {
+  width: 100%;
+
+  padding: 1rem;
+  @include flexbox();
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 99;
+
+  @include medium-breakpoint {
+    @include absolute-tl;
+    padding: 2rem;
+  }
+}
+
+// Left area - Start
+.avatar {
+  $self: &;
+  @include flexbox();
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  min-height: 5.75rem;
+
+  @include small-breakpoint {
+    flex-direction: row;
+  }
+
+  &__pic {
+    position: relative;
+    display: block;
+    width: 5.75rem;
+    height: 5.75rem;
+
+    #{$self}__hand-hello {
+      opacity: 0;
+      @include absolute-tl;
+      z-index: 1;
+      // content: "👋";
+      font-size: 3rem;
+      top: 2.8rem;
+      left: -1.2rem;
+      @include transition-ease;
+      animation: hand-waving 0.5s infinite ease-in-out;
+    }
+
+    img {
+      width: 5.75rem;
+      height: 5.75rem;
+      border-radius: 10rem;
+      @include absolute-tl;
+      @include transition-ease;
+    }
+  }
+  &__title {
+    @include flexbox();
+    flex-direction: column;
+    justify-content: center;
+
+    h3,
+    h4 {
+      margin: 0;
+      color: var(--color-grey-light);
+    }
+  }
+  // On hover whole area, activate img transition
+  &:hover {
+    #{$self}__pic {
+      #{$self}__hand-hello {
+        opacity: 1;
+      }
+    }
+    img {
+      transform: scale(1.25);
+      @include shadow-box;
+    }
+  }
+}
+
+// Select direct child only
+// & > div {
+
+// Animation - Hand waving
+@keyframes hand-waving {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+// Left area - End
+
+//----------------------------------------------------
+// Hero
+//----------------------------------------------------
+
+.hero {
+  $self: &;
+
+  @include medium-breakpoint {
+    height: 100vh;
+    align-items: flex-end; // Horizontale Ausrichtung. Hier: unten
+  }
+
+  .row {
+    flex-direction: column; // Horizontale (row) oder vertikale (column) Anordnung.
+    padding-bottom: 7vh;
+
+    @include medium-breakpoint {
+      justify-content: flex-end; // Verteilung der Elemente innerhalb des Divs. Hier: rechts.
+      align-items: flex-end;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+
+      @include small-breakpoint {
+        font-size: 7.5vw;
+      }
+      @include medium-breakpoint {
+        text-align: right;
+      }
+
+      br {
+        display: none;
+
+        @include large-breakpoint {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  &__summary {
+    @include flexbox();
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include medium-breakpoint {
+      width: 80vw;
+      flex-direction: row; // Horizontale (row) oder vertikale (column) Anordnung.
+    }
+    @include large-breakpoint {
+      width: 55vw;
+    }
+    p {
+      @include flexbox();
+      flex-direction: column;
+      justify-content: flex-end;
+      align-self: stretch;
+      flex: 1;
+
+      text-align: left;
+    }
+    #{$self}__divider {
+      padding-top: 2rem;
+    }
+  }
+}
+
+//----------------------------------------------------
+// Skillset
+//----------------------------------------------------
+
+.card {
+  @include flexbox();
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2vw;
+  padding: 2rem 0;
+
+  & > div {
+    @include flexbox();
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex: 1;
+    gap: 2vw;
+
+    @include large-breakpoint {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__tile {
+    @include flexbox();
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    background-color: var(--color-black-light);
+    min-height: 15rem;
+    min-width: 17rem;
+
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+
+    &--darker {
+      background-color: var(--color-black-dark);
+    }
+
+    @include small-breakpoint {
+      min-height: 20rem;
+    }
+
+    h4 {
+      margin: 0;
+    }
+
+    div {
+      @include flexbox();
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+  }
+  .pill {
+    font-size: 0.9rem;
+    padding: 4px 9px;
+    color: var(--color-light-primary);
+    border: 1px solid var(--color-light-primary);
+    border-radius: 100rem;
+    &--pure {
+      border: none;
+    }
+    @include small-breakpoint {
+      padding: 10px 15px;
+    }
+  }
+  // Pill - User Experience
+  @include skill-pill("UX Research"); // Creates .pill__uxresearche
+  @include skill-pill("Prototyping");
+  @include skill-pill("Wireframing");
+  @include skill-pill("User Flows");
+  @include skill-pill("User Stories");
+  // Pill - User Interface
+  @include skill-pill("Design Systeme");
+  @include skill-pill("Atomic");
+  @include skill-pill("Design Thinking");
+  @include skill-pill("Data Visualisation");
+  // Pill - Front End
+  @include skill-pill("HTML");
+  @include skill-pill("CSS");
+  @include skill-pill("JS");
+  @include skill-pill("React");
+  @include skill-pill("GIT");
+  @include skill-pill("Tailwind");
+  @include skill-pill("Storybook");
+  // Pill -Tools
+  @include skill-pill("Figma");
+  @include skill-pill("Sketch");
+  @include skill-pill("Adobe CC");
+  @include skill-pill("VS Code");
+  @include skill-pill("Miro");
+  @include skill-pill("Zeplin");
+}
+
+//----------------------------------------------------
+// Portfolio
+//----------------------------------------------------
+
+#portfolio {
+  .row {
+    padding-top: 0;
+
+    &--wide {
+      padding: 0;
+    }
+  }
+  h3 {
+    @include medium-breakpoint {
+      font-size: 4.25rem;
+      line-height: 1;
+      margin-bottom: 0;
+    }
+
+    br {
+      display: none;
+      @include large-breakpoint {
+        display: inline;
+      }
+    }
+  }
+}
+.project {
+  @include flexbox;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 1vh 0;
+  @include medium-breakpoint {
+    flex-direction: row;
+    padding: 3vh 0;
+    &:nth-of-type(even) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__showcase {
+    width: calc(100vw - 2rem);
+
+    @include large-breakpoint {
+      flex: 4;
+    }
+
+    img {
+      width: 100%;
+      // border-radius: 0 1rem 1rem 0;
+      @include large-breakpoint {
+        border-radius: 0;
+      }
+    }
+  }
+  &__description {
+    width: 90vw;
+    padding: 1rem 5vw;
+    box-sizing: border-box;
+
+    @include large-breakpoint {
+      width: 100vw;
+      padding: 0 1vw 0 1vw;
+      flex: 1;
+    }
+
+    h4,
+    h5 {
+      margin: 0 0 0.5rem 0;
+    }
+  }
+}
